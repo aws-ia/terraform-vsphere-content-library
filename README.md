@@ -1,47 +1,26 @@
 <!-- BEGIN_TF_DOCS -->
-# Creating modules for AWS I&A Organization
+# vSphere content library Terraform module
 
-This repo template is used to seed Terraform Module templates for the [AWS I&A GitHub organization](https://github.com/aws-ia). Usage of this template is allowed per included license. PRs to this template will be considered but are not guaranteed to be included. Consider creating an issue to discuss a feature you want to include before taking the time to create a PR.
+The vSphere content library Terraform module either creates or imports a [datastore]-backed [content library][content\_library] as well as a list of [items][items] in your [VMware Cloud on AWS][vmconaws] or [VMware vSphere][vsphere] on-premises environment, and then outputs the configuration of each for use in other Terraform projects.
 
-### TL;DR
-
-1. [install pre-commit](https://pre-commit.com/)
-2. configure pre-commit: `pre-commit install`
-3. install required tools
-    - [tflint](https://github.com/terraform-linters/tflint)
-    - [tfsec](https://aquasecurity.github.io/tfsec/v1.0.11/)
-    - [terraform-docs](https://github.com/terraform-docs/terraform-docs)
-    - [golang](https://go.dev/doc/install) (for macos you can use `brew`)
-
-Write code according to [I&A module standards](https://github.com/aws-ia/standards-terraform/content/standards/index.en.md) (need to update link once it goes live)
-
-## Module Documentation
-
-**Do not manually update README.md**. `terraform-docs` is used to generate README files. For any instructions an content, please update [.header.md](./.header.md) then simply run `terraform-docs ./` or allow the `pre-commit` to do so.
-
-## Terratest
-
-Please include tests to validate your examples/<> root modules, at a minimum. This can be accomplished with usually only slight modifications to the [boilerplate test provided in this template](./test/examples\_basic\_test.go)
-
-## Module Standards
-
-For best practices and information on developing with Terraform, see the [I&A Module Standards](https://aws-ia.github.io/standards-terraform/)
-
-## Continuous Integration
-
-The I&A team uses AWS Code Build to preform Continuous Integration (CI) within the organization. Our CI uses the a repo's `.pre-commit-config.yaml` file as well as some other checks. All PRs with other CI will be rejected. See our [FAQ](https://aws-ia.github.io/standards-terraform/faq/#are-modules-protected-by-ci-automation) for more details.
+[content\_library]: https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.vm_admin.doc/GUID-254B2CE8-20A8-43F0-90E8-3F6776C2C896.html?hWord=N4IghgNiBcIMYHsB2AXApqgBBAlgIwCcwCBPEAXyA
+[datastore]: https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.storage.doc/GUID-7BED10DD-3EF2-4670-BA7F-0EEB4EC6EB85.html
+[items]: https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.vm_admin.doc/GUID-D3DD122F-16A5-4F36-8467-97994A854B16.html
+[vsphere]: https://docs.vmware.com/en/VMware-vSphere/index.html
+[vmconaws]: https://aws.amazon.com/vmware/
 
 ## Requirements
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.14.0 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 3.72.0 |
-| <a name="requirement_awscc"></a> [awscc](#requirement\_awscc) | >= 0.11.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.1.0 |
+| <a name="requirement_vsphere"></a> [vsphere](#requirement\_vsphere) | >= 2.1.0 |
 
 ## Providers
 
-No providers.
+| Name | Version |
+|------|---------|
+| <a name="provider_vsphere"></a> [vsphere](#provider\_vsphere) | >= 2.1.0 |
 
 ## Modules
 
@@ -49,13 +28,31 @@ No modules.
 
 ## Resources
 
-No resources.
+| Name | Type |
+|------|------|
+| [vsphere_content_library.content_library](https://registry.terraform.io/providers/hashicorp/vsphere/latest/docs/resources/content_library) | resource |
+| [vsphere_content_library_item.items](https://registry.terraform.io/providers/hashicorp/vsphere/latest/docs/resources/content_library_item) | resource |
+| [vsphere_content_library.content_library](https://registry.terraform.io/providers/hashicorp/vsphere/latest/docs/data-sources/content_library) | data source |
+| [vsphere_content_library_item.items](https://registry.terraform.io/providers/hashicorp/vsphere/latest/docs/data-sources/content_library_item) | data source |
+| [vsphere_datacenter.datacenter](https://registry.terraform.io/providers/hashicorp/vsphere/latest/docs/data-sources/datacenter) | data source |
+| [vsphere_datastore.datastore](https://registry.terraform.io/providers/hashicorp/vsphere/latest/docs/data-sources/datastore) | data source |
 
 ## Inputs
 
-No inputs.
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_create_vsphere_content_library"></a> [create\_vsphere\_content\_library](#input\_create\_vsphere\_content\_library) | If true, a new vSphere content library will be created; otherwise, the corresponding content library will be imported as a data source. | `bool` | `false` | no |
+| <a name="input_create_vsphere_content_library_items"></a> [create\_vsphere\_content\_library\_items](#input\_create\_vsphere\_content\_library\_items) | If true, new vSphere content library items will be created for each specified; otherwise, the corresponding content library items will be imported as a data source. | `bool` | `false` | no |
+| <a name="input_vsphere_content_library_description"></a> [vsphere\_content\_library\_description](#input\_vsphere\_content\_library\_description) | The description of the vSphere content library. | `string` | `null` | no |
+| <a name="input_vsphere_content_library_items"></a> [vsphere\_content\_library\_items](#input\_vsphere\_content\_library\_items) | List of maps of strings defining either OVA/OVF or ISO vSphere content library items (https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.vm_admin.doc/GUID-D3DD122F-16A5-4F36-8467-97994A854B16.html). At this time, VM template items are not supported by this module, but can be easily added separately. Each map must have the following keys: 'name', 'description', 'file\_url', and 'type'. The value for each 'type' key must be set to either 'ovf' or 'iso'. Last, only the value for 'description' can be empty. | `list(map(string))` | `[]` | no |
+| <a name="input_vsphere_content_library_name"></a> [vsphere\_content\_library\_name](#input\_vsphere\_content\_library\_name) | The name of the vSphere content library (https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.vm_admin.doc/GUID-254B2CE8-20A8-43F0-90E8-3F6776C2C896.html?hWord=N4IghgNiBcIMYHsB2AXApqgBBAlgIwCcwCBPEAXyA). | `string` | `"Content library"` | no |
+| <a name="input_vsphere_datacenter_name"></a> [vsphere\_datacenter\_name](#input\_vsphere\_datacenter\_name) | The name of the vSphere datacenter object where the AWS Backup Gateway virtual appliance will be created (https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.vcenterhost.doc/GUID-7FDFBDBE-F8AC-4D00-AE5E-3F14D7472FAF.html). | `string` | `"SDDC-Datacenter"` | no |
+| <a name="input_vsphere_datastore_name"></a> [vsphere\_datastore\_name](#input\_vsphere\_datastore\_name) | The name of the vSphere datastore object where the AWS Backup Gateway virtual appliance's virtual disks will be stored (https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.storage.doc/GUID-7BED10DD-3EF2-4670-BA7F-0EEB4EC6EB85.html). | `string` | `"WorkloadDatastore"` | no |
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_content_library"></a> [content\_library](#output\_content\_library) | The vSphere content library. |
+| <a name="output_items"></a> [items](#output\_items) | The list of vSphere content library items. |
 <!-- END_TF_DOCS -->
