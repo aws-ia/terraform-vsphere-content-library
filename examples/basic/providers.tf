@@ -7,3 +7,7 @@ terraform {
     }
   }
 }
+
+# Configured with environment variables
+# https://registry.terraform.io/providers/hashicorp/vsphere/latest/docs#argument-reference
+provider "vsphere" {}
