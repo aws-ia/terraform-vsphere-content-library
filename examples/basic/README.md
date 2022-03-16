@@ -1,11 +1,20 @@
 <!-- BEGIN_TF_DOCS -->
+# Basic example
+
+If deployed with the default values, this example will create a [content library][content\_library] named `example-content-library` backed by a [datastore] named `WorkloadDatastore`, and one ISO [item][items] named `vmware-tools-windows-11.3.0-18` in your [VMware Cloud on AWS][vmconaws] or [VMware vSphere][vsphere] on-premises environment.
+
+[content\_library]: https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.vm_admin.doc/GUID-254B2CE8-20A8-43F0-90E8-3F6776C2C896.html?hWord=N4IghgNiBcIMYHsB2AXApqgBBAlgIwCcwCBPEAXyA
+[datastore]: https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.storage.doc/GUID-7BED10DD-3EF2-4670-BA7F-0EEB4EC6EB85.html
+[items]: https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.vm_admin.doc/GUID-D3DD122F-16A5-4F36-8467-97994A854B16.html
+[vsphere]: https://docs.vmware.com/en/VMware-vSphere/index.html
+[vmconaws]: https://aws.amazon.com/vmware/
+
 ## Requirements
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.14.0 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 3.72.0 |
-| <a name="requirement_awscc"></a> [awscc](#requirement\_awscc) | >= 0.9.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.1.0 |
+| <a name="requirement_vsphere"></a> [vsphere](#requirement\_vsphere) | >= 2.1.0 |
 
 ## Providers
 
@@ -13,7 +22,9 @@ No providers.
 
 ## Modules
 
-No modules.
+| Name | Source | Version |
+|------|--------|---------|
+| <a name="module_vsphere_content_library"></a> [vsphere\_content\_library](#module\_vsphere\_content\_library) | ../.. | n/a |
 
 ## Resources
 
@@ -21,9 +32,20 @@ No resources.
 
 ## Inputs
 
-No inputs.
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_create_vsphere_content_library"></a> [create\_vsphere\_content\_library](#input\_create\_vsphere\_content\_library) | If true, a new vSphere content library will be created; otherwise, the corresponding content library will be imported as a data source. | `bool` | `true` | no |
+| <a name="input_create_vsphere_content_library_items"></a> [create\_vsphere\_content\_library\_items](#input\_create\_vsphere\_content\_library\_items) | If true, new vSphere content library items will be created for each specified; otherwise, the corresponding content library items will be imported as a data source. | `bool` | `true` | no |
+| <a name="input_vsphere_content_library_description"></a> [vsphere\_content\_library\_description](#input\_vsphere\_content\_library\_description) | The description of the vSphere content library. | `string` | `null` | no |
+| <a name="input_vsphere_content_library_items"></a> [vsphere\_content\_library\_items](#input\_vsphere\_content\_library\_items) | List of maps of strings defining either OVA/OVF or ISO vSphere content library items. At this time, VM template items are not supported by this module, but can be easily added separately. Each map must have the following keys: 'name', 'description', 'file\_url', and 'type'. The value for each 'type' key must be set to either 'ovf' or 'iso'. Last, only the value for 'description' can be empty. | `list(map(string))` | <pre>[<br>  {<br>    "description": "VMware Tools for Windows.",<br>    "file_url": "https://packages.vmware.com/tools/esx/7.0u3/windows/VMware-tools-windows-11.3.0-18090558.iso",<br>    "name": "vmware-tools-windows-11.3.0-18",<br>    "type": "iso"<br>  }<br>]</pre> | no |
+| <a name="input_vsphere_content_library_name"></a> [vsphere\_content\_library\_name](#input\_vsphere\_content\_library\_name) | The name of the vSphere content library (https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.vm_admin.doc/GUID-254B2CE8-20A8-43F0-90E8-3F6776C2C896.html?hWord=N4IghgNiBcIMYHsB2AXApqgBBAlgIwCcwCBPEAXyA). | `string` | `"example-content-library"` | no |
+| <a name="input_vsphere_datacenter_name"></a> [vsphere\_datacenter\_name](#input\_vsphere\_datacenter\_name) | The name of the vSphere datacenter object where the AWS Backup Gateway virtual appliance will be created (https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.vcenterhost.doc/GUID-7FDFBDBE-F8AC-4D00-AE5E-3F14D7472FAF.html). | `string` | `"SDDC-Datacenter"` | no |
+| <a name="input_vsphere_datastore_name"></a> [vsphere\_datastore\_name](#input\_vsphere\_datastore\_name) | The name of the vSphere datastore object where the AWS Backup Gateway virtual appliance's virtual disks will be stored (https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.storage.doc/GUID-7BED10DD-3EF2-4670-BA7F-0EEB4EC6EB85.html). | `string` | `"WorkloadDatastore"` | no |
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_content_library"></a> [content\_library](#output\_content\_library) | The vSphere content library. |
+| <a name="output_items"></a> [items](#output\_items) | The list of vSphere content library items. |
 <!-- END_TF_DOCS -->
