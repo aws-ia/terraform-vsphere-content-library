@@ -8,13 +8,13 @@ data "vsphere_datastore" "datastore" {
 }
 
 data "vsphere_content_library" "content_library" {
-  count = var.create_content_library ? 0 : 1
+  count = (var.create_content_library) ? 0 : 1
 
   name = var.content_library_name
 }
 
 data "vsphere_content_library_item" "items" {
-  count = length(data.vsphere_content_library.content_library) == 1 && !var.create_content_library_items ? length(var.content_library_items) : 0
+  count = (length(data.vsphere_content_library.content_library) == 1 && !var.create_content_library_items) ? length(var.content_library_items) : 0
 
   name       = var.content_library_items[count.index]["name"]
   type       = var.content_library_items[count.index]["type"]
