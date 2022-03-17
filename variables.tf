@@ -51,7 +51,7 @@ variable "create_vsphere_content_library" {
 variable "vsphere_content_library_items" {
   type        = list(map(string))
   description = "List of maps of strings defining either OVA/OVF or ISO vSphere content library items (https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.vm_admin.doc/GUID-D3DD122F-16A5-4F36-8467-97994A854B16.html). At this time, VM template items are not supported by this module, but can be easily added separately. Each map must have the following keys: 'name', 'description', 'file_url', and 'type'. The value for each 'type' key must be set to either 'ovf' or 'iso'. Last, only the value for 'description' can be empty."
-  default = []
+  default     = []
   nullable    = false
 
   /*
@@ -66,7 +66,7 @@ variable "vsphere_content_library_items" {
   */
 
   validation {
-    condition = alltrue([for t in var.vsphere_content_library_items : length(keys(t)) == 4])
+    condition     = alltrue([for t in var.vsphere_content_library_items : length(keys(t)) == 4])
     error_message = "Must be a list of one or more maps of strings with exactly 4 keys."
   }
 
@@ -75,7 +75,8 @@ variable "vsphere_content_library_items" {
       contains(["name", "file_url"], k) &&
       length(v) > 0) ||
       (k == "type" && contains(["ovf", "iso"], v) ||
-      k == "description")])])
+      k == "description")
+    ])])
     error_message = "Must be a list of one or more maps of strings with 'name', 'description', 'file_url', and 'type' keys, the value for the 'type' key must be either 'ovf' or 'iso', and only the value for 'description' is permitted to be empty."
   }
 }
