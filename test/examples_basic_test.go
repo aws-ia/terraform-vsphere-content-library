@@ -11,10 +11,10 @@ import (
 
 // You must set these environment variables for this test
 const (
-	vsphere_user     = "VSPHERE_USER"
-	vsphere_password = "VSPHERE_PASSWORD"
-	vsphere_server   = "VSPHERE_SERVER"
-	// vsphere_allow_unverified_ssl = "VSPHERE_ALLOW_UNVERIFIED_SSL"
+	user     = "VSPHERE_USER"
+	password = "VSPHERE_PASSWORD"
+	server   = "VSPHERE_SERVER"
+	// allow_unverified_ssl = "VSPHERE_ALLOW_UNVERIFIED_SSL"
 
 	input_validation_test_failed_message = "Invalid '%s' value input validation test failed."
 )
@@ -26,25 +26,29 @@ func GetEnvOrExit(env_var string) {
 	}
 }
 
+func GetEnvsOrExit() {
+	GetEnvOrExit(user)
+	GetEnvOrExit(password)
+	GetEnvOrExit(server)
+}
+
 func TestExamplesNewContentLibraryNewItem(t *testing.T) {
-	GetEnvOrExit(vsphere_user)
-	GetEnvOrExit(vsphere_password)
-	GetEnvOrExit(vsphere_server)
+	GetEnvsOrExit()
 
 	terraformOptions := &terraform.Options{
 		TerraformDir: "../examples/basic",
 		Vars: map[string]interface{}{
-			"vsphere_datacenter_name":              "SDDC-Datacenter",
-			"vsphere_datastore_name":               "WorkloadDatastore",
-			"vsphere_content_library_name":         "example-content-library",
-			"vsphere_content_library_description":  "",
-			"create_vsphere_content_library":       true,
-			"create_vsphere_content_library_items": true,
-			// "vsphere_tag_category_name":            "terraform",
-			// "vsphere_tags":                         []interface{}{map[string]interface{}{"name": "terraform", "description": ""}},
-			// "create_vsphere_tag_category":          false,
-			// "create_vsphere_tags":                  false,
-			"vsphere_content_library_items": []interface{}{map[string]interface{}{
+			"datacenter_name":              "SDDC-Datacenter",
+			"datastore_name":               "WorkloadDatastore",
+			"content_library_name":         "example-content-library",
+			"content_library_description":  "",
+			"create_content_library":       true,
+			"create_content_library_items": true,
+			// "tag_category_name":            "terraform",
+			// "tags":                         []interface{}{map[string]interface{}{"name": "terraform", "description": ""}},
+			// "create_tag_category":          false,
+			// "create_tags":                  false,
+			"content_library_items": []interface{}{map[string]interface{}{
 				"name":        "vmware-tools-windows-11.3.0-18",
 				"description": "VMware Tools for Windows.",
 				"file_url":    "https://packages.vmware.com/tools/esx/7.0u3/windows/VMware-tools-windows-11.3.0-18090558.iso",
@@ -58,24 +62,22 @@ func TestExamplesNewContentLibraryNewItem(t *testing.T) {
 }
 
 func TestExamplesImportContentLibraryImportItem(t *testing.T) {
-	GetEnvOrExit(vsphere_user)
-	GetEnvOrExit(vsphere_password)
-	GetEnvOrExit(vsphere_server)
+	GetEnvsOrExit()
 
 	terraformOptions := &terraform.Options{
 		TerraformDir: "../examples/basic",
 		Vars: map[string]interface{}{
-			"vsphere_datacenter_name":              "SDDC-Datacenter",
-			"vsphere_datastore_name":               "WorkloadDatastore",
-			"vsphere_content_library_name":         "Content library",
-			"vsphere_content_library_description":  "",
-			"create_vsphere_content_library":       false,
-			"create_vsphere_content_library_items": false,
-			// "vsphere_tag_category_name":            "terraform",
-			// "vsphere_tags":                         []interface{}{map[string]interface{}{"name": "terraform", "description": ""}},
-			// "create_vsphere_tag_category":          false,
-			// "create_vsphere_tags":                  false,
-			"vsphere_content_library_items": []interface{}{map[string]interface{}{
+			"datacenter_name":              "SDDC-Datacenter",
+			"datastore_name":               "WorkloadDatastore",
+			"content_library_name":         "Content library",
+			"content_library_description":  "",
+			"create_content_library":       false,
+			"create_content_library_items": false,
+			// "tag_category_name":            "terraform",
+			// "tags":                         []interface{}{map[string]interface{}{"name": "terraform", "description": ""}},
+			// "create_tag_category":          false,
+			// "create_tags":                  false,
+			"content_library_items": []interface{}{map[string]interface{}{
 				"name":        "aws-appliance-latest.ova",
 				"description": "",
 				"file_url":    "https://d28e23pnuuv0hr.cloudfront.net/aws-appliance-latest.ova",
@@ -89,24 +91,22 @@ func TestExamplesImportContentLibraryImportItem(t *testing.T) {
 }
 
 func TestExamplesImportContentLibraryNewItem(t *testing.T) {
-	GetEnvOrExit(vsphere_user)
-	GetEnvOrExit(vsphere_password)
-	GetEnvOrExit(vsphere_server)
+	GetEnvsOrExit()
 
 	terraformOptions := &terraform.Options{
 		TerraformDir: "../examples/basic",
 		Vars: map[string]interface{}{
-			"vsphere_datacenter_name":              "SDDC-Datacenter",
-			"vsphere_datastore_name":               "WorkloadDatastore",
-			"vsphere_content_library_name":         "Content library",
-			"vsphere_content_library_description":  "",
-			"create_vsphere_content_library":       false,
-			"create_vsphere_content_library_items": true,
-			// "vsphere_tag_category_name":            "terraform",
-			// "vsphere_tags":                         []interface{}{map[string]interface{}{"name": "terraform", "description": ""}},
-			// "create_vsphere_tag_category":          false,
-			// "create_vsphere_tags":                  false,
-			"vsphere_content_library_items": []interface{}{map[string]interface{}{
+			"datacenter_name":              "SDDC-Datacenter",
+			"datastore_name":               "WorkloadDatastore",
+			"content_library_name":         "Content library",
+			"content_library_description":  "",
+			"create_content_library":       false,
+			"create_content_library_items": true,
+			// "tag_category_name":            "terraform",
+			// "tags":                         []interface{}{map[string]interface{}{"name": "terraform", "description": ""}},
+			// "create_tag_category":          false,
+			// "create_tags":                  false,
+			"content_library_items": []interface{}{map[string]interface{}{
 				"name":        "vmware-tools-windows-11.3.0-18",
 				"description": "VMware Tools for Windows.",
 				"file_url":    "https://packages.vmware.com/tools/esx/7.0u3/windows/VMware-tools-windows-11.3.0-18090558.iso",
@@ -121,24 +121,22 @@ func TestExamplesImportContentLibraryNewItem(t *testing.T) {
 
 func TestExamplesNewContentLibraryImportItem(t *testing.T) {
 	// Create library and skip importing library items since they don't exist. Intentionally passes.
-	GetEnvOrExit(vsphere_user)
-	GetEnvOrExit(vsphere_password)
-	GetEnvOrExit(vsphere_server)
+	GetEnvsOrExit()
 
 	terraformOptions := &terraform.Options{
 		TerraformDir: "../examples/basic",
 		Vars: map[string]interface{}{
-			"vsphere_datacenter_name":              "SDDC-Datacenter",
-			"vsphere_datastore_name":               "WorkloadDatastore",
-			"vsphere_content_library_name":         "example-content-library",
-			"vsphere_content_library_description":  "",
-			"create_vsphere_content_library":       true,
-			"create_vsphere_content_library_items": false,
-			// "vsphere_tag_category_name":            "terraform",
-			// "vsphere_tags":                         []interface{}{map[string]interface{}{"name": "terraform", "description": ""}},
-			// "create_vsphere_tag_category":          false,
-			// "create_vsphere_tags":                  false,
-			"vsphere_content_library_items": []interface{}{map[string]interface{}{
+			"datacenter_name":              "SDDC-Datacenter",
+			"datastore_name":               "WorkloadDatastore",
+			"content_library_name":         "example-content-library",
+			"content_library_description":  "",
+			"create_content_library":       true,
+			"create_content_library_items": false,
+			// "tag_category_name":            "terraform",
+			// "tags":                         []interface{}{map[string]interface{}{"name": "terraform", "description": ""}},
+			// "create_tag_category":          false,
+			// "create_tags":                  false,
+			"content_library_items": []interface{}{map[string]interface{}{
 				"name":        "vmware-tools-windows-11.3.0-18",
 				"description": "VMware Tools for Windows.",
 				"file_url":    "https://packages.vmware.com/tools/esx/7.0u3/windows/VMware-tools-windows-11.3.0-18090558.iso",
@@ -152,68 +150,60 @@ func TestExamplesNewContentLibraryImportItem(t *testing.T) {
 }
 
 func TestExamplesInvalidDatacenterName(t *testing.T) {
-	GetEnvOrExit(vsphere_user)
-	GetEnvOrExit(vsphere_password)
-	GetEnvOrExit(vsphere_server)
+	GetEnvsOrExit()
 
 	terraformOptions := &terraform.Options{
 		TerraformDir: "../examples/basic",
 		Vars: map[string]interface{}{
-			"vsphere_datacenter_name": "",
+			"datacenter_name": "",
 		},
 	}
 
 	if _, err := terraform.ApplyE(t, terraformOptions); err == nil {
 		defer terraform.Destroy(t, terraformOptions)
-		require.Error(t, err, fmt.Sprintf(input_validation_test_failed_message, "vsphere_datacenter_name"))
+		require.Error(t, err, fmt.Sprintf(input_validation_test_failed_message, "datacenter_name"))
 	}
 }
 
 func TestExamplesInvalidDatastoreName(t *testing.T) {
-	GetEnvOrExit(vsphere_user)
-	GetEnvOrExit(vsphere_password)
-	GetEnvOrExit(vsphere_server)
+	GetEnvsOrExit()
 
 	terraformOptions := &terraform.Options{
 		TerraformDir: "../examples/basic",
 		Vars: map[string]interface{}{
-			"vsphere_datastore_name": "",
+			"datastore_name": "",
 		},
 	}
 
 	if _, err := terraform.ApplyE(t, terraformOptions); err == nil {
 		defer terraform.Destroy(t, terraformOptions)
-		require.Error(t, err, fmt.Sprintf(input_validation_test_failed_message, "vsphere_datastore_name"))
+		require.Error(t, err, fmt.Sprintf(input_validation_test_failed_message, "datastore_name"))
 	}
 }
 
 func TestExamplesInvalidContentLibraryName(t *testing.T) {
-	GetEnvOrExit(vsphere_user)
-	GetEnvOrExit(vsphere_password)
-	GetEnvOrExit(vsphere_server)
+	GetEnvsOrExit()
 
 	terraformOptions := &terraform.Options{
 		TerraformDir: "../examples/basic",
 		Vars: map[string]interface{}{
-			"vsphere_content_library_name": "",
+			"content_library_name": "",
 		},
 	}
 
 	if _, err := terraform.ApplyE(t, terraformOptions); err == nil {
 		defer terraform.Destroy(t, terraformOptions)
-		require.Error(t, err, fmt.Sprintf(input_validation_test_failed_message, "vsphere_content_library_name"))
+		require.Error(t, err, fmt.Sprintf(input_validation_test_failed_message, "content_library_name"))
 	}
 }
 
 func TestExamplesInvalidContentLibraryItemsNumKeys(t *testing.T) {
-	GetEnvOrExit(vsphere_user)
-	GetEnvOrExit(vsphere_password)
-	GetEnvOrExit(vsphere_server)
+	GetEnvsOrExit()
 
 	terraformOptions := &terraform.Options{
 		TerraformDir: "../examples/basic",
 		Vars: map[string]interface{}{
-			"vsphere_content_library_items": []interface{}{map[string]interface{}{
+			"content_library_items": []interface{}{map[string]interface{}{
 				"name": "test",
 			}},
 		},
@@ -221,19 +211,17 @@ func TestExamplesInvalidContentLibraryItemsNumKeys(t *testing.T) {
 
 	if _, err := terraform.ApplyE(t, terraformOptions); err == nil {
 		defer terraform.Destroy(t, terraformOptions)
-		require.Error(t, err, fmt.Sprintf(input_validation_test_failed_message, "vsphere_content_library_items"))
+		require.Error(t, err, fmt.Sprintf(input_validation_test_failed_message, "content_library_items"))
 	}
 }
 
 func TestExamplesInvalidContentLibraryItemsNameKey(t *testing.T) {
-	GetEnvOrExit(vsphere_user)
-	GetEnvOrExit(vsphere_password)
-	GetEnvOrExit(vsphere_server)
+	GetEnvsOrExit()
 
 	terraformOptions := &terraform.Options{
 		TerraformDir: "../examples/basic",
 		Vars: map[string]interface{}{
-			"vsphere_content_library_items": []interface{}{map[string]interface{}{
+			"content_library_items": []interface{}{map[string]interface{}{
 				"name":        "",
 				"description": "",
 				"file_url":    "a",
@@ -244,19 +232,17 @@ func TestExamplesInvalidContentLibraryItemsNameKey(t *testing.T) {
 
 	if _, err := terraform.ApplyE(t, terraformOptions); err == nil {
 		defer terraform.Destroy(t, terraformOptions)
-		require.Error(t, err, fmt.Sprintf(input_validation_test_failed_message, "vsphere_content_library_items"))
+		require.Error(t, err, fmt.Sprintf(input_validation_test_failed_message, "content_library_items"))
 	}
 }
 
 func TestExamplesInvalidContentLibraryItemsFileUrlKey(t *testing.T) {
-	GetEnvOrExit(vsphere_user)
-	GetEnvOrExit(vsphere_password)
-	GetEnvOrExit(vsphere_server)
+	GetEnvsOrExit()
 
 	terraformOptions := &terraform.Options{
 		TerraformDir: "../examples/basic",
 		Vars: map[string]interface{}{
-			"vsphere_content_library_items": []interface{}{map[string]interface{}{
+			"content_library_items": []interface{}{map[string]interface{}{
 				"name":        "a",
 				"description": "",
 				"file_url":    "",
@@ -267,19 +253,17 @@ func TestExamplesInvalidContentLibraryItemsFileUrlKey(t *testing.T) {
 
 	if _, err := terraform.ApplyE(t, terraformOptions); err == nil {
 		defer terraform.Destroy(t, terraformOptions)
-		require.Error(t, err, fmt.Sprintf(input_validation_test_failed_message, "vsphere_content_library_items"))
+		require.Error(t, err, fmt.Sprintf(input_validation_test_failed_message, "content_library_items"))
 	}
 }
 
 func TestExamplesInvalidContentLibraryItemsTypeKey1(t *testing.T) {
-	GetEnvOrExit(vsphere_user)
-	GetEnvOrExit(vsphere_password)
-	GetEnvOrExit(vsphere_server)
+	GetEnvsOrExit()
 
 	terraformOptions := &terraform.Options{
 		TerraformDir: "../examples/basic",
 		Vars: map[string]interface{}{
-			"vsphere_content_library_items": []interface{}{map[string]interface{}{
+			"content_library_items": []interface{}{map[string]interface{}{
 				"name":        "a",
 				"description": "",
 				"file_url":    "a",
@@ -290,19 +274,17 @@ func TestExamplesInvalidContentLibraryItemsTypeKey1(t *testing.T) {
 
 	if _, err := terraform.ApplyE(t, terraformOptions); err == nil {
 		defer terraform.Destroy(t, terraformOptions)
-		require.Error(t, err, fmt.Sprintf(input_validation_test_failed_message, "vsphere_content_library_items"))
+		require.Error(t, err, fmt.Sprintf(input_validation_test_failed_message, "content_library_items"))
 	}
 }
 
 func TestExamplesInvalidContentLibraryItemsTypeKey2(t *testing.T) {
-	GetEnvOrExit(vsphere_user)
-	GetEnvOrExit(vsphere_password)
-	GetEnvOrExit(vsphere_server)
+	GetEnvsOrExit()
 
 	terraformOptions := &terraform.Options{
 		TerraformDir: "../examples/basic",
 		Vars: map[string]interface{}{
-			"vsphere_content_library_items": []interface{}{map[string]interface{}{
+			"content_library_items": []interface{}{map[string]interface{}{
 				"name":        "a",
 				"description": "",
 				"file_url":    "a",
@@ -313,6 +295,6 @@ func TestExamplesInvalidContentLibraryItemsTypeKey2(t *testing.T) {
 
 	if _, err := terraform.ApplyE(t, terraformOptions); err == nil {
 		defer terraform.Destroy(t, terraformOptions)
-		require.Error(t, err, fmt.Sprintf(input_validation_test_failed_message, "vsphere_content_library_items"))
+		require.Error(t, err, fmt.Sprintf(input_validation_test_failed_message, "content_library_items"))
 	}
 }

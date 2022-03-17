@@ -2,38 +2,38 @@
 # Reference: https://github.com/hashicorp/terraform-provider-vsphere/issues/1498
 
 # module "vsphere_tags" {
-#   count = length(var.vsphere_tags) > 0 ? 1 : 0
+#   count = length(var.tags) > 0 ? 1 : 0
 
 #   source = "github.com/aws-ia/terraform-vsphere-tags"
 #   # version = "0.0.1"
 
-#   vsphere_tag_category_name             = var.vsphere_tag_category_name
-#   vsphere_tag_category_description      = var.vsphere_tag_category_description
-#   vsphere_tag_category_associable_types = var.vsphere_tag_category_associable_types
-#   vsphere_tag_category_cardinality      = var.vsphere_tag_category_cardinality
-#   create_vsphere_tag_category           = var.create_vsphere_tag_category
-#   vsphere_tags                          = var.vsphere_tags
-#   create_vsphere_tags                   = var.create_vsphere_tags
+#   tag_category_name             = var.tag_category_name
+#   tag_category_description      = var.tag_category_description
+#   tag_category_associable_types = var.tag_category_associable_types
+#   tag_category_cardinality      = var.tag_category_cardinality
+#   create_tag_category           = var.create_tag_category
+#   tags                          = var.tags
+#   create_tags                   = var.create_tags
 # }
 
 resource "vsphere_content_library" "content_library" {
-  count = var.create_vsphere_content_library ? 1 : 0
+  count = var.create_content_library ? 1 : 0
 
-  name            = var.vsphere_content_library_name
-  description     = var.vsphere_content_library_description
+  name            = var.content_library_name
+  description     = var.content_library_description
   storage_backing = [data.vsphere_datastore.datastore.id]
 
-  # tags = length(module.vsphere_tags) == 1 ? module.vsphere_tags[0].vsphere_tags[*].id : null
+  # tags = length(module.vsphere_tags) == 1 ? module.vsphere_tags[0].tags[*].id : null
 }
 
 resource "vsphere_content_library_item" "items" {
-  count = var.create_vsphere_content_library_items ? length(var.vsphere_content_library_items) : 0
+  count = var.create_content_library_items ? length(var.content_library_items) : 0
 
-  name        = var.vsphere_content_library_items[count.index]["name"]
-  description = var.vsphere_content_library_items[count.index]["description"]
-  file_url    = var.vsphere_content_library_items[count.index]["file_url"]
-  type        = var.vsphere_content_library_items[count.index]["type"]
-  library_id  = var.create_vsphere_content_library ? vsphere_content_library.content_library[0].id : data.vsphere_content_library.content_library[0].id
+  name        = var.content_library_items[count.index]["name"]
+  description = var.content_library_items[count.index]["description"]
+  file_url    = var.content_library_items[count.index]["file_url"]
+  type        = var.content_library_items[count.index]["type"]
+  library_id  = var.create_content_library ? vsphere_content_library.content_library[0].id : data.vsphere_content_library.content_library[0].id
 
-  # tags = length(module.vsphere_tags) == 1 ? module.vsphere_tags[0].vsphere_tags[*].id : null
+  # tags = length(module.vsphere_tags) == 1 ? module.vsphere_tags[0].tags[*].id : null
 }
