@@ -88,6 +88,64 @@ variable "create_content_library_items" {
   nullable    = false
 }
 
+variable "authentication_method" {
+  type        = string
+  description = "Method for authenticating users if creating a publication/subscription relationship between content libraries."
+  default     = null
+  nullable    = true
+
+  validation {
+    condition     = var.authentication_method == null || try(contains(["NONE", "BASIC"], var.authentication_method), false)
+    error_message = "Accepted values: null, 'NONE', or 'BASIC'."
+  }
+}
+
+variable "password" {
+  type        = string
+  description = "Password if creating a publication/subscription relationship between content libraries with authentication. Password length and complexity requirements are determined by the configuration in vCenter."
+  default     = null
+  sensitive   = true
+  nullable    = true
+
+  validation {
+    condition     = var.password == null || try(length(var.password) >= 0, false)
+    error_message = "Must be null or a string of one or more characters."
+  }
+}
+
+variable "publication_published" {
+  type        = bool
+  description = "If true, publish the content library if creating a publication/subscription relationship between content libraries."
+  default     = null
+  nullable    = true
+}
+
+variable "subscription_url" {
+  type        = string
+  description = "URL of the published content library if creating a publication/subscription relationship between content libraries."
+  default     = null
+  nullable    = true
+
+  validation {
+    condition     = var.subscription_url == null || try(length(var.subscription_url) > 0, false)
+    error_message = "Must be null or a string of one or more characters."
+  }
+}
+
+variable "subscription_automatic_sync" {
+  type        = bool
+  description = "If true, enable automatic synchronization with the published library if creating a publication/subscription relationship between content libraries."
+  default     = null
+  nullable    = true
+}
+
+variable "subscription_on_demand" {
+  type        = bool
+  description = "If true, download the published content library items only when needed if creating a publication/subscription relationship between content libraries."
+  default     = null
+  nullable    = true
+}
+
 # TODO: Add tags once support for content libraries & content library items are added
 # Reference: https://github.com/hashicorp/terraform-provider-vsphere/issues/1498
 

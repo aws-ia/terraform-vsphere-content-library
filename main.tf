@@ -23,6 +23,30 @@ resource "vsphere_content_library" "content_library" {
   description     = var.content_library_description
   storage_backing = [data.vsphere_datastore.datastore.id]
 
+  dynamic "publication" {
+    for_each = local.publication
+
+    content {
+      authentication_method = publication.value.authentication_method
+      username              = publication.value.username
+      password              = publication.value.password
+      published             = publication.value.published
+    }
+  }
+
+  dynamic "subscription" {
+    for_each = local.subscription
+
+    content {
+      subscription_url      = subscription.value.subscription_url
+      authentication_method = subscription.value.authentication_method
+      username              = subscription.value.username
+      password              = subscription.value.password
+      automatic_sync        = subscription.value.automatic_sync
+      on_demand             = subscription.value.on_demand
+    }
+  }
+
   # tags = (length(module.vsphere_tags) == 1) ? module.vsphere_tags[0].tags[*].id : null
 }
 
