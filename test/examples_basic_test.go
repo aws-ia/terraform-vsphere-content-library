@@ -9,12 +9,16 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-// You must set these environment variables for this test
 const (
 	user     = "VSPHERE_USER"
 	password = "VSPHERE_PASSWORD"
 	server   = "VSPHERE_SERVER"
 	// allow_unverified_ssl = "VSPHERE_ALLOW_UNVERIFIED_SSL"
+
+	existing_content_library_name         = "VSPHERE_EXISTING_CONTENT_LIBRARY_NAME"
+	existing_content_library_item_name    = "VSPHERE_EXISTING_CONTENT_LIBRARY_ITEM_NAME"
+	existing_content_library_item_fileurl = "VSPHERE_EXISTING_CONTENT_LIBRARY_ITEM_FILEURL"
+	existing_content_library_item_type    = "VSPHERE_EXISTING_CONTENT_LIBRARY_ITEM_TYPE"
 
 	input_validation_test_failed_message = "Invalid '%s' value input validation test failed."
 )
@@ -32,28 +36,47 @@ func GetEnvsOrExit() {
 	GetEnvOrExit(server)
 }
 
+func TestExamplesNewContentLibraryNoItems(t *testing.T) {
+	GetEnvsOrExit()
+
+	terraformOptions := &terraform.Options{
+		TerraformDir: "../examples/basic",
+		// Vars: map[string]interface{}{
+		// 	"datacenter_name":              "SDDC-Datacenter",
+		// 	"datastore_name":               "WorkloadDatastore",
+		// 	"content_library_name":         "example-content-library",
+		// 	"content_library_description":  "",
+		// 	"create_content_library":       true,
+		// 	"create_content_library_items": true,
+		// 	// "tag_category_name":            "terraform",
+		// 	// "tags":                         []interface{}{map[string]interface{}{"name": "terraform", "description": ""}},
+		// 	// "create_tag_category":          false,
+		// 	// "create_tags":                  false,
+		// 	"content_library_items": []interface{}{map[string]interface{}{
+		// 		"name":        "vmware-tools-windows-11.3.0-18",
+		// 		"description": "VMware Tools for Windows.",
+		// 		"file_url":    "https://packages.vmware.com/tools/esx/7.0u3/windows/VMware-tools-windows-11.3.0-18090558.iso",
+		// 		"type":        "iso",
+		// 	}},
+		// },
+		Vars: map[string]interface{}{
+			"create_content_library": true,
+			"content_library_items":  []interface{}{},
+		},
+	}
+
+	defer terraform.Destroy(t, terraformOptions)
+	terraform.InitAndApply(t, terraformOptions)
+}
+
 func TestExamplesNewContentLibraryNewItem(t *testing.T) {
 	GetEnvsOrExit()
 
 	terraformOptions := &terraform.Options{
 		TerraformDir: "../examples/basic",
 		Vars: map[string]interface{}{
-			"datacenter_name":              "SDDC-Datacenter",
-			"datastore_name":               "WorkloadDatastore",
-			"content_library_name":         "example-content-library",
-			"content_library_description":  "",
 			"create_content_library":       true,
 			"create_content_library_items": true,
-			// "tag_category_name":            "terraform",
-			// "tags":                         []interface{}{map[string]interface{}{"name": "terraform", "description": ""}},
-			// "create_tag_category":          false,
-			// "create_tags":                  false,
-			"content_library_items": []interface{}{map[string]interface{}{
-				"name":        "vmware-tools-windows-11.3.0-18",
-				"description": "VMware Tools for Windows.",
-				"file_url":    "https://packages.vmware.com/tools/esx/7.0u3/windows/VMware-tools-windows-11.3.0-18090558.iso",
-				"type":        "iso",
-			}},
 		},
 	}
 
@@ -63,25 +86,22 @@ func TestExamplesNewContentLibraryNewItem(t *testing.T) {
 
 func TestExamplesImportContentLibraryImportItem(t *testing.T) {
 	GetEnvsOrExit()
+	GetEnvOrExit(existing_content_library_name)
+	GetEnvOrExit(existing_content_library_item_name)
+	GetEnvOrExit(existing_content_library_item_fileurl)
+	GetEnvOrExit(existing_content_library_item_type)
 
 	terraformOptions := &terraform.Options{
 		TerraformDir: "../examples/basic",
 		Vars: map[string]interface{}{
-			"datacenter_name":              "SDDC-Datacenter",
-			"datastore_name":               "WorkloadDatastore",
-			"content_library_name":         "Content library",
-			"content_library_description":  "",
+			"content_library_name":         os.Getenv(existing_content_library_name),
 			"create_content_library":       false,
 			"create_content_library_items": false,
-			// "tag_category_name":            "terraform",
-			// "tags":                         []interface{}{map[string]interface{}{"name": "terraform", "description": ""}},
-			// "create_tag_category":          false,
-			// "create_tags":                  false,
 			"content_library_items": []interface{}{map[string]interface{}{
-				"name":        "aws-appliance-latest.ova",
+				"name":        os.Getenv(existing_content_library_item_name),
 				"description": "",
-				"file_url":    "https://d28e23pnuuv0hr.cloudfront.net/aws-appliance-latest.ova",
-				"type":        "ovf",
+				"file_url":    os.Getenv(existing_content_library_item_fileurl),
+				"type":        os.Getenv(existing_content_library_item_type),
 			}},
 		},
 	}
@@ -92,26 +112,14 @@ func TestExamplesImportContentLibraryImportItem(t *testing.T) {
 
 func TestExamplesImportContentLibraryNewItem(t *testing.T) {
 	GetEnvsOrExit()
+	GetEnvOrExit(existing_content_library_name)
 
 	terraformOptions := &terraform.Options{
 		TerraformDir: "../examples/basic",
 		Vars: map[string]interface{}{
-			"datacenter_name":              "SDDC-Datacenter",
-			"datastore_name":               "WorkloadDatastore",
-			"content_library_name":         "Content library",
-			"content_library_description":  "",
+			"content_library_name":         os.Getenv(existing_content_library_name),
 			"create_content_library":       false,
 			"create_content_library_items": true,
-			// "tag_category_name":            "terraform",
-			// "tags":                         []interface{}{map[string]interface{}{"name": "terraform", "description": ""}},
-			// "create_tag_category":          false,
-			// "create_tags":                  false,
-			"content_library_items": []interface{}{map[string]interface{}{
-				"name":        "vmware-tools-windows-11.3.0-18",
-				"description": "VMware Tools for Windows.",
-				"file_url":    "https://packages.vmware.com/tools/esx/7.0u3/windows/VMware-tools-windows-11.3.0-18090558.iso",
-				"type":        "iso",
-			}},
 		},
 	}
 
