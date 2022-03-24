@@ -1,6 +1,6 @@
 output "content_library" {
   description = "The vSphere content library."
-  value       = (var.create_content_library) ? vsphere_content_library.content_library : data.vsphere_content_library.content_library
+  value       = (length(vsphere_content_library.content_library) == 1) ? vsphere_content_library.content_library[0] : data.vsphere_content_library.content_library[0]
 }
 
 output "items" {

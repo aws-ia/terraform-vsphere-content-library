@@ -33,7 +33,7 @@ resource "vsphere_content_library_item" "items" {
   description = var.content_library_items[count.index]["description"]
   file_url    = var.content_library_items[count.index]["file_url"]
   type        = var.content_library_items[count.index]["type"]
-  library_id  = (var.create_content_library) ? vsphere_content_library.content_library[0].id : data.vsphere_content_library.content_library[0].id
+  library_id  = (length(vsphere_content_library.content_library) == 1) ? vsphere_content_library.content_library[0].id : data.vsphere_content_library.content_library[0].id
 
   # tags = (length(module.vsphere_tags) == 1) ? module.vsphere_tags[0].tags[*].id : null
 }
