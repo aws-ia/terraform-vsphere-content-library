@@ -2,7 +2,7 @@
 # Reference: https://github.com/hashicorp/terraform-provider-vsphere/issues/1498
 
 # module "vsphere_tags" {
-#   count = (length(var.tags) > 0) ? 1 : 0
+#   count = (length(keys(var.tags)) > 0) ? 1 : 0
 
 #   source = "github.com/aws-ia/terraform-vsphere-tags"
 #   # version = "0.0.1"
