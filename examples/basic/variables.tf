@@ -102,16 +102,10 @@ variable "create_content_library_items" {
 # variable "tags" {
 #   type        = list(map(string))
 #   description = "List of one or more maps of strings defining vSphere tags. Each map must only have 'name' & 'description' keys, and the value for 'name' cannot be empty."
-#   default = [
-#     {
-#       name        = "terraform"
-#       description = "Managed by Terraform"
-#     },
-#     {
-#       name        = "project"
-#       description = "terraform-vsphere-tags"
-#     },
-#   ]
+#   default = {
+#     terraform = "Managed by Terraform"
+#     project = "terraform-vsphere-tags"
+#   }
 # }
 
 # variable "create_tags" {
