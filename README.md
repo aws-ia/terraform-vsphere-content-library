@@ -1,7 +1,9 @@
 <!-- BEGIN_TF_DOCS -->
 # vSphere Content Library Terraform Module
 
-Terraform that module either creates or imports a [datastore]-backed standalone, publisher, or subscriber [content library][content\_library] with an optional list of new or existing [items][items] in your [VMware Cloud on AWS][vmconaws] or [VMware vSphere][vsphere] on&#8209;premises environment for storing deployment media such as OVA & ISO images, as well as files and virtual machine (VM) templates.
+This Terraform module creates or imports a [datastore]-backed [content library][content\_library] in your [VMware Cloud on AWS][vmconaws] or [VMware vSphere][vsphere] on&#8209;premises environment. You can configure the content library as one of three types: standalone, publisher, or subscriber.
+
+You can optionally specify a list of new [items], such as OVA and ISO images, to deploy into the new or existing content library or a list of items to import from an existing content library.
 
 ## Usage
 
