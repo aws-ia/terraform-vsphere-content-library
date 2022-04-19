@@ -1,6 +1,6 @@
 module "publisher" {
   # source = "../.."
-  source  = "aws-ia/vsphere-content-library/vsphere"
+  source  = "aws-ia/content-library/vsphere"
   version = ">= 0.0.1"
 
   datacenter_name = var.datacenter_name
@@ -16,7 +16,7 @@ module "publisher" {
 
 module "subscriber" {
   # source = "../.."
-  source  = "aws-ia/vsphere-content-library/vsphere"
+  source  = "aws-ia/content-library/vsphere"
   version = ">= 0.0.1"
 
   datacenter_name = var.datacenter_name

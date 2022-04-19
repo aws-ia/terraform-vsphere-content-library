@@ -11,7 +11,7 @@ You can optionally specify a list of new [items], such as OVA and ISO images, to
 
 ```hcl
 module "vsphere_content_library" {
-  source  = "aws-ia/vsphere-content-library/vsphere"
+  source  = "aws-ia/content-library/vsphere"
   version = ">= 0.0.1"
 
   datacenter_name              = "SDDC-Datacenter"
@@ -26,7 +26,7 @@ module "vsphere_content_library" {
 
 ```hcl
 module "vsphere_content_library" {
-  source  = "aws-ia/vsphere-content-library/vsphere"
+  source  = "aws-ia/content-library/vsphere"
   version = ">= 0.0.1"
 
   datacenter_name              = "SDDC-Datacenter"
@@ -50,7 +50,7 @@ module "vsphere_content_library" {
 
 ```hcl
 module "vsphere_content_library" {
-  source  = "aws-ia/vsphere-content-library/vsphere"
+  source  = "aws-ia/content-library/vsphere"
   version = ">= 0.0.1"
 
   content_library_name         = "example-content-library"
@@ -71,7 +71,7 @@ module "vsphere_content_library" {
 
 ```hcl
 module "vsphere_content_library" {
-  source  = "aws-ia/vsphere-content-library/vsphere"
+  source  = "aws-ia/content-library/vsphere"
   version = ">= 0.0.1"
 
   content_library_name         = "example-content-library"
@@ -92,7 +92,7 @@ module "vsphere_content_library" {
 
 ```hcl
 module "vsphere_content_library" {
-  source  = "aws-ia/vsphere-content-library/vsphere"
+  source  = "aws-ia/content-library/vsphere"
   version = ">= 0.0.1"
 
   content_library_name   = "example-publisher"
@@ -108,7 +108,7 @@ module "vsphere_content_library" {
 
 ```hcl
 module "vsphere_content_library" {
-  source  = "aws-ia/vsphere-content-library/vsphere"
+  source  = "aws-ia/content-library/vsphere"
   version = ">= 0.0.1"
 
   content_library_name   = "example-subscriber"
