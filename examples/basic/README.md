@@ -63,7 +63,7 @@ No providers.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_vsphere_content_library"></a> [vsphere\_content\_library](#module\_vsphere\_content\_library) | ../.. | n/a |
+| <a name="module_vsphere_content_library"></a> [vsphere\_content\_library](#module\_vsphere\_content\_library) | aws-ia/content-library/vsphere | >= 0.0.1 |
 
 ## Resources
 

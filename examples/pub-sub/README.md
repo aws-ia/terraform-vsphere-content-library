@@ -63,8 +63,8 @@ No providers.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_publisher"></a> [publisher](#module\_publisher) | ../.. | n/a |
-| <a name="module_subscriber"></a> [subscriber](#module\_subscriber) | ../.. | n/a |
+| <a name="module_publisher"></a> [publisher](#module\_publisher) | aws-ia/content-library/vsphere | >= 0.0.1 |
+| <a name="module_subscriber"></a> [subscriber](#module\_subscriber) | aws-ia/content-library/vsphere | >= 0.0.1 |
 
 ## Resources
 
