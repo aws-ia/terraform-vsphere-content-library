@@ -1,13 +1,13 @@
 <!-- BEGIN_TF_DOCS -->
 # Basic example
 
-If deployed with the default values, this example will create a [content library][content\_library] named `example-content-library` backed by a [datastore] named `WorkloadDatastore`, and one ISO [item][items] named `vmware-tools-windows-11.3.0-18` in your [VMware Cloud on AWS][vmconaws] or [VMware vSphere][vsphere] on&#8209;premises environment.
+If deployed with the default values, this example will create a [content library](https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.vm_admin.doc/GUID-254B2CE8-20A8-43F0-90E8-3F6776C2C896.html?hWord=N4IghgNiBcIMYHsB2AXApqgBBAlgIwCcwCBPEAXyA) named `example-content-library` backed by a [datastore](https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.storage.doc/GUID-7BED10DD-3EF2-4670-BA7F-0EEB4EC6EB85.html) named `WorkloadDatastore`, and one ISO [item](https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.vm_admin.doc/GUID-D3DD122F-16A5-4F36-8467-97994A854B16.html) named `vmware-tools-windows-11.3.0-18` in your [VMware Cloud on AWS](https://aws.amazon.com/vmware/) or [VMware vSphere](https://docs.vmware.com/en/VMware-vSphere/index.html) on&#8209;premises environment.
 
 ## Usage
 
 ### Configure the provider
 
-One way to configure the VMware vSphere provider is with [environment variables][env\_vars], for example:
+One way to configure the VMware vSphere provider is with [environment variables](https://registry.terraform.io/providers/hashicorp/vsphere/latest/docs#argument-reference), for example:
 
 * Required
   * `VSPHERE_USER`: Username for vSphere API operations.
@@ -20,7 +20,7 @@ One way to configure the VMware vSphere provider is with [environment variables]
 
 ### Configure the input variables
 
-All of the variables in this example have default values, but if you would like to override any of these, one way to do so is to create a [`terraform.tfvars` variable definition file][tfvars] in this directory.
+All of the variables in this example have default values, but if you would like to override any of these, one way to do so is to create a [`terraform.tfvars` variable definition file](https://www.terraform.io/language/values/variables#variable-definitions-tfvars-files) in this directory.
 
 #### Example `terraform.tfvars`
 
@@ -30,23 +30,11 @@ content_library_name = "Content library"
 
 ### Deploy
 
-To deploy this example, execute the following: 1/&nbsp;[`terraform init`][tf\_init], 2/&nbsp;[`terraform plan`][tf\_plan], and 3/&nbsp;[`terraform apply`][tf\_apply].
+To deploy this example, execute the following: 1/&nbsp;[`terraform init`](https://www.terraform.io/cli/commands/init), 2/&nbsp;[`terraform plan`](https://www.terraform.io/cli/commands/plan), and 3/&nbsp;[`terraform apply`](https://www.terraform.io/cli/commands/apply).
 
 ### Clean-up
 
-When you want to remove the resources, execute the following: [`terraform destroy`][tf\_destroy].
-
-[content\_library]: https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.vm_admin.doc/GUID-254B2CE8-20A8-43F0-90E8-3F6776C2C896.html?hWord=N4IghgNiBcIMYHsB2AXApqgBBAlgIwCcwCBPEAXyA
-[datastore]: https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.storage.doc/GUID-7BED10DD-3EF2-4670-BA7F-0EEB4EC6EB85.html
-[env\_vars]: https://registry.terraform.io/providers/hashicorp/vsphere/latest/docs#argument-reference
-[items]: https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.vm_admin.doc/GUID-D3DD122F-16A5-4F36-8467-97994A854B16.html
-[tf\_apply]: https://www.terraform.io/cli/commands/apply
-[tf\_destroy]: https://www.terraform.io/cli/commands/destroy
-[tf\_init]: https://www.terraform.io/cli/commands/init
-[tf\_plan]: https://www.terraform.io/cli/commands/plan
-[tfvars]: https://www.terraform.io/language/values/variables#variable-definitions-tfvars-files
-[vsphere]: https://docs.vmware.com/en/VMware-vSphere/index.html
-[vmconaws]: https://aws.amazon.com/vmware/
+When you want to remove the resources, execute the following: [`terraform destroy`](https://www.terraform.io/cli/commands/destroy).
 
 ## Requirements
 

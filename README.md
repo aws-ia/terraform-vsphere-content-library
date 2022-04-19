@@ -1,9 +1,9 @@
 <!-- BEGIN_TF_DOCS -->
 # vSphere Content Library Terraform Module
 
-This Terraform module creates or imports a [datastore]-backed [content library][content\_library] in your [VMware Cloud on AWS][vmconaws] or [VMware vSphere][vsphere] on&#8209;premises environment. You can configure the content library as one of three types: standalone, publisher, or subscriber.
+This Terraform module creates or imports a [datastore](https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.storage.doc/GUID-7BED10DD-3EF2-4670-BA7F-0EEB4EC6EB85.html)&#8209;backed [content library](https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.vm_admin.doc/GUID-254B2CE8-20A8-43F0-90E8-3F6776C2C896.html?hWord=N4IghgNiBcIMYHsB2AXApqgBBAlgIwCcwCBPEAXyA) in your [VMware Cloud on AWS](https://aws.amazon.com/vmware/) or [VMware vSphere](https://docs.vmware.com/en/VMware-vSphere/index.html) on&#8209;premises environment. You can configure the content library as one of three types: standalone, publisher, or subscriber.
 
-You can optionally specify a list of new [items], such as OVA and ISO images, to deploy into the new or existing content library or a list of items to import from an existing content library.
+You can optionally specify a list of new [items](https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.vm_admin.doc/GUID-D3DD122F-16A5-4F36-8467-97994A854B16.html), such as OVA and ISO images, to deploy into the new or existing content library or a list of items to import from an existing content library.
 
 ## Usage
 
@@ -121,12 +121,6 @@ module "vsphere_content_library" {
   subscription_on_demand      = false
 }
 ```
-
-[content\_library]: https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.vm_admin.doc/GUID-254B2CE8-20A8-43F0-90E8-3F6776C2C896.html?hWord=N4IghgNiBcIMYHsB2AXApqgBBAlgIwCcwCBPEAXyA
-[datastore]: https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.storage.doc/GUID-7BED10DD-3EF2-4670-BA7F-0EEB4EC6EB85.html
-[items]: https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.vm_admin.doc/GUID-D3DD122F-16A5-4F36-8467-97994A854B16.html
-[vsphere]: https://docs.vmware.com/en/VMware-vSphere/index.html
-[vmconaws]: https://aws.amazon.com/vmware/
 
 ## Requirements
 
