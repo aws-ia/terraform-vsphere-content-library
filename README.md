@@ -67,7 +67,7 @@ module "vsphere_content_library" {
 }
 ```
 
-### Import existing items into an existing content library
+### Import existing items from an existing content library
 
 ```hcl
 module "vsphere_content_library" {
