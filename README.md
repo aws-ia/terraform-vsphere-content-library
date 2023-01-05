@@ -133,7 +133,7 @@ module "vsphere_content_library" {
 
 | Name | Version |
 |------|---------|
-| <a name="provider_vsphere"></a> [vsphere](#provider\_vsphere) | 2.2.0 |
+| <a name="provider_vsphere"></a> [vsphere](#provider\_vsphere) | >= 2.1.0 |
 
 ## Modules
 
