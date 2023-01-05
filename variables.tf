@@ -1,6 +1,6 @@
 variable "datacenter_name" {
   type        = string
-  description = "The name of the vSphere datacenter object where the content library will be created (https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.vcenterhost.doc/GUID-7FDFBDBE-F8AC-4D00-AE5E-3F14D7472FAF.html)."
+  description = "The name of the vSphere datacenter object where the content library will be created (https://docs.vmware.com/en/VMware-vSphere/8.0/vsphere-vcenter-esxi-management/GUID-7FDFBDBE-F8AC-4D00-AE5E-3F14D7472FAF.html)."
   default     = "SDDC-Datacenter"
   nullable    = false
 
@@ -12,7 +12,7 @@ variable "datacenter_name" {
 
 variable "datastore_name" {
   type        = string
-  description = "The name of the vSphere datastore object where the content library items will be stored (https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.storage.doc/GUID-7BED10DD-3EF2-4670-BA7F-0EEB4EC6EB85.html)."
+  description = "The name of the vSphere datastore object where the content library items will be stored (https://docs.vmware.com/en/VMware-vSphere/8.0/vsphere-storage/GUID-7BED10DD-3EF2-4670-BA7F-0EEB4EC6EB85.html)."
   default     = "WorkloadDatastore"
   nullable    = false
 
@@ -24,7 +24,7 @@ variable "datastore_name" {
 
 variable "content_library_name" {
   type        = string
-  description = "The name of the vSphere content library (https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.vm_admin.doc/GUID-254B2CE8-20A8-43F0-90E8-3F6776C2C896.html?hWord=N4IghgNiBcIMYHsB2AXApqgBBAlgIwCcwCBPEAXyA)."
+  description = "The name of the vSphere content library (https://docs.vmware.com/en/VMware-vSphere/8.0/vsphere-vm-administration/GUID-254B2CE8-20A8-43F0-90E8-3F6776C2C896.html)."
   default     = "Content library"
   nullable    = false
 
@@ -50,7 +50,7 @@ variable "create_content_library" {
 
 variable "content_library_items" {
   type        = list(map(string))
-  description = "List of maps of strings defining either OVA/OVF or ISO vSphere content library items (https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.vm_admin.doc/GUID-D3DD122F-16A5-4F36-8467-97994A854B16.html). At this time, VM template items are not supported by this module, but can be easily added separately. Each map must have the following keys: 'name', 'description', 'file_url', and 'type'. The value for each 'type' key must be set to either 'ovf' or 'iso'. Last, only the value for 'description' can be empty."
+  description = "List of maps of strings defining either OVA/OVF or ISO vSphere content library items (https://docs.vmware.com/en/VMware-vSphere/8.0/vsphere-vm-administration/GUID-D3DD122F-16A5-4F36-8467-97994A854B16.html). At this time, VM template items are not supported by this module, but can be easily added separately. Each map must have the following keys: 'name', 'description', 'file_url', and 'type'. The value for each 'type' key must be set to either 'ovf' or 'iso'. Last, only the value for 'description' can be empty."
   default     = []
   nullable    = false
 
