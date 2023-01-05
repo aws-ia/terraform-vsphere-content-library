@@ -12,7 +12,7 @@ You can optionally specify a list of new [items](https://docs.vmware.com/en/VMwa
 ```hcl
 module "vsphere_content_library" {
   source  = "aws-ia/content-library/vsphere"
-  version = ">= 0.0.1"
+  version = ">= 1.0.0"
 
   datacenter_name              = "SDDC-Datacenter"
   datastore_name               = "WorkloadDatastore"
@@ -27,7 +27,7 @@ module "vsphere_content_library" {
 ```hcl
 module "vsphere_content_library" {
   source  = "aws-ia/content-library/vsphere"
-  version = ">= 0.0.1"
+  version = ">= 1.0.0"
 
   datacenter_name              = "SDDC-Datacenter"
   datastore_name               = "WorkloadDatastore"
@@ -51,7 +51,7 @@ module "vsphere_content_library" {
 ```hcl
 module "vsphere_content_library" {
   source  = "aws-ia/content-library/vsphere"
-  version = ">= 0.0.1"
+  version = ">= 1.0.0"
 
   content_library_name         = "example-content-library"
   create_content_library       = false
@@ -72,7 +72,7 @@ module "vsphere_content_library" {
 ```hcl
 module "vsphere_content_library" {
   source  = "aws-ia/content-library/vsphere"
-  version = ">= 0.0.1"
+  version = ">= 1.0.0"
 
   content_library_name         = "example-content-library"
   create_content_library       = false
@@ -93,7 +93,7 @@ module "vsphere_content_library" {
 ```hcl
 module "vsphere_content_library" {
   source  = "aws-ia/content-library/vsphere"
-  version = ">= 0.0.1"
+  version = ">= 1.0.0"
 
   content_library_name   = "example-publisher"
   create_content_library = true
@@ -109,7 +109,7 @@ module "vsphere_content_library" {
 ```hcl
 module "vsphere_content_library" {
   source  = "aws-ia/content-library/vsphere"
-  version = ">= 0.0.1"
+  version = ">= 1.0.0"
 
   content_library_name   = "example-subscriber"
   create_content_library = true
@@ -133,7 +133,7 @@ module "vsphere_content_library" {
 
 | Name | Version |
 |------|---------|
-| <a name="provider_vsphere"></a> [vsphere](#provider\_vsphere) | >= 2.1.0 |
+| <a name="provider_vsphere"></a> [vsphere](#provider\_vsphere) | 2.2.0 |
 
 ## Modules
 
