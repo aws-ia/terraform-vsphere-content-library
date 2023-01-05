@@ -53,9 +53,9 @@ func TestExamplesNewContentLibraryNoItems(t *testing.T) {
 		// 	// "create_tag_category":          false,
 		// 	// "create_tags":                  false,
 		// 	"content_library_items": []interface{}{map[string]interface{}{
-		// 		"name":        "vmware-tools-windows-11.3.0-18",
+		// 		"name":        "vmware-tools-windows-12.0.6-20",
 		// 		"description": "VMware Tools for Windows.",
-		// 		"file_url":    "https://packages.vmware.com/tools/esx/7.0u3/windows/VMware-tools-windows-11.3.0-18090558.iso",
+		// 		"file_url":    "https://packages.vmware.com/tools/esx/8.0/windows/VMware-tools-windows-12.0.6-20104755.iso",
 		// 		"type":        "iso",
 		// 	}},
 		// },
@@ -145,9 +145,9 @@ func TestExamplesNewContentLibraryImportItem(t *testing.T) {
 			// "create_tag_category":          false,
 			// "create_tags":                  false,
 			"content_library_items": []interface{}{map[string]interface{}{
-				"name":        "vmware-tools-windows-11.3.0-18",
+				"name":        "vmware-tools-windows-12.0.6-20",
 				"description": "VMware Tools for Windows.",
-				"file_url":    "https://packages.vmware.com/tools/esx/7.0u3/windows/VMware-tools-windows-11.3.0-18090558.iso",
+				"file_url":    "https://packages.vmware.com/tools/esx/8.0/windows/VMware-tools-windows-12.0.6-20104755.iso",
 				"type":        "iso",
 			}},
 		},

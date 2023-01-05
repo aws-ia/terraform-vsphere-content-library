@@ -33,9 +33,9 @@ variable "content_library_items" {
   description = "List of maps of strings defining either OVA/OVF or ISO vSphere content library items (https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.vm_admin.doc/GUID-D3DD122F-16A5-4F36-8467-97994A854B16.html). At this time, VM template items are not supported by this module, but can be easily added separately. Each map must have the following keys: 'name', 'description', 'file_url', and 'type'. The value for each 'type' key must be set to either 'ovf' or 'iso'. Last, only the value for 'description' can be empty."
   default = [
     {
-      name        = "vmware-tools-windows-11.3.0-18"
+      name        = "vmware-tools-windows-12.0.6-20"
       description = "VMware Tools for Windows."
-      file_url    = "https://packages.vmware.com/tools/esx/7.0u3/windows/VMware-tools-windows-11.3.0-18090558.iso"
+      file_url    = "https://packages.vmware.com/tools/esx/8.0/windows/VMware-tools-windows-12.0.6-20104755.iso"
       type        = "iso"
     },
   ]
