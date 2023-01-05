@@ -37,9 +37,9 @@ module "vsphere_content_library" {
   create_content_library_items = true
   content_library_items        = [
     {
-      name        = "vmware-tools-windows-11.3.0-18"
+      name        = "vmware-tools-windows-12.0.6-20"
       description = "VMware Tools for Windows."
-      file_url    = "https://packages.vmware.com/tools/esx/7.0u3/windows/VMware-tools-windows-11.3.0-18090558.iso"
+      file_url    = "https://packages.vmware.com/tools/esx/8.0/windows/VMware-tools-windows-12.0.6-20104755.iso"
       type        = "iso"
     },
   ]
@@ -58,9 +58,9 @@ module "vsphere_content_library" {
   create_content_library_items = true
   content_library_items        = [
     {
-      name        = "vmware-tools-windows-11.3.0-18"
+      name        = "vmware-tools-windows-12.0.6-20"
       description = "VMware Tools for Windows."
-      file_url    = "https://packages.vmware.com/tools/esx/7.0u3/windows/VMware-tools-windows-11.3.0-18090558.iso"
+      file_url    = "https://packages.vmware.com/tools/esx/8.0/windows/VMware-tools-windows-12.0.6-20104755.iso"
       type        = "iso"
     },
   ]
@@ -79,7 +79,7 @@ module "vsphere_content_library" {
   create_content_library_items = false
   content_library_items        = [
     {
-      name        = "vmware-tools-windows-11.3.0-18"
+      name        = "vmware-tools-windows-12.0.6-20"
       description = ""
       file_url    = "n/a"
       type        = "iso"
